@@ -1,0 +1,15 @@
+[
+    {
+       "id":"c5d3e6c3-16c4-4791-a0d4-ca20712f9878",
+       "login":"sjoffrey",
+       "password":"$2b$10$PcR9m5REGbfxG4dm.29YVe0ZOEjH3iWsIUYQXoxc6GZiR3esF0S5i",
+       "ip":"127.0.0.1",
+       "token":{
+          "access_token":"ya29.A0ARrdaM9qWIUmQ3wXp3KLPkQua5vFyytjV_Wfd6aBgL9oiqQ7M_8TtPncqvww1Ob8WltB0WUV2ObnC9Gvrn7Ib_1kwJGqj8W6T1y5ILryFZuZ6pidZ6hg4dyR2zthitgr_bPitXEVH_Ky3w9FWZXiTc45-_3B",
+          "scope":"openid https://mail.google.com/ https://www.googleapis.com/auth/userinfo.email",
+          "token_type":"Bearer",
+          "id_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImQ2M2RiZTczYWFkODhjODU0ZGUwZDhkNmMwMTRjMzZkYzI1YzQyOTIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyMDg4MzQzMzYwMzEtdDk1NWZyZWJ1Nm8zaG1mbGdvY3A4azE1NmNvZDNncGwuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMDg4MzQzMzYwMzEtdDk1NWZyZWJ1Nm8zaG1mbGdvY3A4azE1NmNvZDNncGwuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTExMDY2MzA5NTQ1Mzk4MjE1NjQiLCJlbWFpbCI6Indhbm5lc21hdHRoeXNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ5MXNYalJ3X2xiZzBzelF1UjNxMXh3IiwiaWF0IjoxNjQ3MzQ5OTcwLCJleHAiOjE2NDczNTM1NzB9.VRJkgHqOXGq1UzzNpqL99gPncE6zSUNvBR2y1lVy2b6MCjhbZ17h3meBqXC5JCReuLoFeARAlxOrhveaMTswL9d6X_WevvZpqsWqSxVqKYHEJJVdZPy6bft1jqm86nyM6sH2jXedxjUgcsD4-EcWcgRielO5jrWb-jwKnxIEU1ukWpRI0z3MWXa1OQoCgJ1rA0U2gS789_S9FQ0y-uFqxf8l8npDmX7CpuHl-3K6c9N_j37VDZGiJ3sfMUfSh8lmxVt84exlJ7HBKh8EwW4Ytlqnjjwtwa6OmPpuV5rrk2KnTgn3lXU0BMH2nsm-uapRCLf2GY7-y0JVARThwidsQA",
+          "expiry_date":1647353558529
+       }
+    }
+]
