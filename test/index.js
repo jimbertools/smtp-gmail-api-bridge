@@ -7,7 +7,7 @@ const smtpTransport = nodemailer.createTransport({
     host: "localhost",
     port: 1025,
     auth: {
-        user: "sjoffrey",
+        user: "wannes",
         pass: "wannes"
     }
 });
