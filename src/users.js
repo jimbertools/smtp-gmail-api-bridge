@@ -30,6 +30,11 @@ const createUser = async (login, password, ip) => {
 
     const token = await getNewToken(user, oAuth2Client);
     user.token = token;
+
+    oAuth2Client.setCredentials(token);
+    const userInfo = JSON.parse(Buffer.from(oAuth2Client.credentials.id_token.split('.')[1], 'base64').toString());
+    user.email = userInfo.email;
+
     await saveUser(user);
 }
 

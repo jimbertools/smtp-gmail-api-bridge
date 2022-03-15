@@ -2,21 +2,32 @@ import fs from "fs/promises";
 import * as reader from "readline-sync";
 import {google} from "googleapis";
 import * as nodemailer from "nodemailer";
-import { saveUser } from "./users.js";
+import { saveUser, setUsers } from "./users.js";
 
 const SCOPES = ['https://mail.google.com/', 'email'];
 
 const sendMail = async (user, message) => {
     const config = await fs.readFile("../config.json");
-    const oAuth2Client = await authorize(JSON.parse(config), user);
+    const credentials = JSON.parse(config);
+    const oAuth2Client = await authorize(credentials, user);
 
-    const userInfo = JSON.parse(Buffer.from(oAuth2Client.credentials.id_token.split('.')[1], 'base64').toString());
-    const transporter = createTransporter(userInfo.email, oAuth2Client._clientId, oAuth2Client._clientSecret, oAuth2Client.credentials.access_token, oAuth2Client.credentials.refresh_token);
+    const transporter = createTransporter(user.email, oAuth2Client._clientId, oAuth2Client._clientSecret, oAuth2Client.credentials.access_token, oAuth2Client.credentials.refresh_token);
+    try {
+        await transporter.sendMail({
+          ...message,
+          "from": userInfo.email
+        });
+    } catch (e) {
+        // invalid accessToken ==> refresh it
+        const token = (await oAuth2Client.refreshToken(oAuth2Client.credentials.refresh_token)).tokens;
+        user.token = {
+            ...token,
+            refresh_token: user.token.refresh_token
+        }
+        await saveUser(user);
+        authorize(credentials, user);
+    }
     
-    await transporter.sendMail({
-      ...message,
-      "from": userInfo.email
-    });
 }
 
 const createTransporter = (email, clientId, clientSecret, accessToken, refreshToken) => {
@@ -51,6 +62,7 @@ const getNewToken = async (user, oAuth2Client) => {
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: SCOPES,
+    prompt: 'consent'
   });
   console.log('Authorize this app by visiting this url:', authUrl);
 

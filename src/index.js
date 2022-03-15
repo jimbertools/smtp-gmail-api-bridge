@@ -45,6 +45,7 @@ const server = new SMTPServer({
 
             splittedMessage[splittedMessage.length - 1][0] = splittedMessage[0][1].includes("html") ? "html" : "text";
             const messageObject = constructObject(splittedMessage);
+
             await sendMail(session.user, messageObject);
 
             return callback();
@@ -83,6 +84,4 @@ app.get("/callback", (req, res) => {
     return res.end(req.query.code);
 });
 
-app.listen("80", "127.0.0.1", () => {
-    console.log("Server running on port 3000");
-});
+app.listen("80");
