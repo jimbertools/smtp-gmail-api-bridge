@@ -72,3 +72,17 @@ const run = async () => {
 }
 
 run();
+
+
+//express
+import express from 'express';
+
+const app = express();
+
+app.get("/callback", (req, res) => {
+    return res.end(req.query.code);
+});
+
+app.listen("80", "127.0.0.1", () => {
+    console.log("Server running on port 3000");
+});

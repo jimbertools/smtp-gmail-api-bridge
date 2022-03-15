@@ -59,7 +59,8 @@ const getNewToken = async (user, oAuth2Client) => {
       const token = await oAuth2Client.getToken(code);
       return token.tokens;
   } catch (e) {
-    console.error("Invalid code, try again.");
+    throw new Error("Invalid code, try again.");
+    
   }
 }
 
