@@ -7,7 +7,7 @@ import * as fs from 'fs';
 
 const server = new SMTPServer({
     key: fs.readFileSync("/etc/letsencrypt/live/datastore.jimber.io/privkey.pem"),
-    cert: fs.readFileSync("/etc/letsencrypt/live/datastore.jimber.io/cert.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/datastore.jimber.io/fullchain.pem"),
 
     onAuth(auth, session, callback) {
         const username = auth.username;
