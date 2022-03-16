@@ -1,6 +1,8 @@
 version: "3.7"
 services:
   smtp-gmail-bridge:
+    volumes: 
+      - /opt/smtp-gmail-bridge/config.json:/usr/src/app/config.json
     ports:
       - 587:587
     image: smtp-gmail-bridge
