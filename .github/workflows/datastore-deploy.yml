@@ -1,0 +1,15 @@
+name: datastore deploy
+
+on:
+  push:
+    tags:
+      - "v[0-9]+"
+jobs:
+  builddeploy:
+    runs-on: datastore
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: docker build . -t smtp-gmail-bridge
+      - name: Deploy
+        run: docker-compose down && docker-compose up -d
