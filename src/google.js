@@ -13,6 +13,7 @@ const sendMail = async (user, message) => {
 
     const transporter = createTransporter(user.email, oAuth2Client._clientId, oAuth2Client._clientSecret, oAuth2Client.credentials.access_token, oAuth2Client.credentials.refresh_token);
     try {
+        console.log(`sending email from ${user.email} to ${message.to}`)
         await transporter.sendMail({
           ...message,
           "from": userInfo.email
