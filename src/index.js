@@ -3,11 +3,11 @@ import { sendMail } from "./google.js"
 import { getUsers, setUsers } from "./users.js";
 import * as bcrypt from "bcrypt";
 import ipRangeCheck from "ip-range-check";
+import * as fs from 'fs';
 
 const server = new SMTPServer({
-    secure: false,
-    // key: fs.readFileSync("private.key"),
-    // cert: fs.readFileSync("server.crt")
+    key: fs.readFileSync("/etc/letsencrypt/live/datastore.jimber.io/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/datastore.jimber.io/fullchain.pem"),
 
     onAuth(auth, session, callback) {
         const username = auth.username;
