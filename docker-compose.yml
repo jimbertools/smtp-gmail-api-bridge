@@ -2,6 +2,6 @@ version: "3.7"
 services:
   smtp-gmail-bridge:
     ports:
-      587:587
+      - 587:587
     image: smtp-gmail-bridge
     restart: always
