@@ -4,6 +4,7 @@ services:
     volumes: 
       - /opt/smtp-gmail-bridge/config.json:/usr/src/app/config.json
       - /opt/smtp-gmail-bridge/users.json:/usr/src/app/users.json
+      - /etc/letsencrypt/:/etc/letsencrypt
     ports:
       - 1025:1025
     image: smtp-gmail-bridge
