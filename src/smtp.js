@@ -35,7 +35,6 @@ const server = new SMTPServer({
         stream.on("end", async () => {
             buffer = Buffer.concat(parts);
             const message = Buffer.from(buffer, 'base64').toString().trim();
-
             const messageObject = {
               envelope: {
                   to: session.envelope.rcptTo,

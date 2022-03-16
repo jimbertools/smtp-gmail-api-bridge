@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getNewToken } from "./google.js";
 import {google} from "googleapis";
 import * as bcrypt from "bcrypt";
+import ipRangeCheck from "ip-range-check";
 
 let users;
 
@@ -54,9 +55,15 @@ const saveUser = async (user) => {
     await setUsers(tmpUsers);
 }
 
+const findUser = async (username, password, ip) => {
+    await setUsers();
+    return users.find(u => u.login === username && bcrypt.compareSync(password, u.password) && ipRangeCheck(ip, u.ip));
+}
+
 export {
     getUsers,
     setUsers,
     createUser,
-    saveUser
+    saveUser,
+    findUser
 }

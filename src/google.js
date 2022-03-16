@@ -9,19 +9,21 @@ const SCOPES = ['https://mail.google.com/', 'email'];
 const sendMail = async (user, message) => {
     const config = await fs.readFile("../config.json");
     const credentials = JSON.parse(config);
-    const oAuth2Client = await authorize(credentials, user);
-
+    const oAuth2Client = await authorize(credentials, user);    
     const transporter = createTransporter(user.email, oAuth2Client._clientId, oAuth2Client._clientSecret, oAuth2Client.credentials.access_token, oAuth2Client.credentials.refresh_token);
+    console.log(transporter);
     try {
-        console.log(`Sending email from ${user.email} to ${message.envelope.to.map(to => to.address).join(", ")}`)
+        //console.log(`Sending email from ${user.email} to ${message.envelope.to.map(to => to.address).join(", ")}`)
         console.log(new Date());
 
-        await transporter.sendMail({
+        const mail = await transporter.sendMail({
           ...message,
           "from": user.email
         });
 
         console.log("Email was successfully sent");
+
+        return mail;
     } catch (e) {
         // invalid accessToken ==> refresh it
         console.log("Invalid accesstoken, refreshing it");
