@@ -7,7 +7,7 @@ const smtpTransport = nodemailer.createTransport({
     host: "localhost",
     port: 1025,
     auth: {
-        user: "wannes",
+        user: "wannesmatthys",
         pass: "wannes"
     }
 });
@@ -16,8 +16,8 @@ const smtpTransport = nodemailer.createTransport({
 const message = {
     from: "wannesmatthys@gmail.com",
     to: "wannes233@gmail.com",
-    text: "Hallo mijn naam is Wannes.",
-    subject: "jup"
+    text: "test .",
+    subject: "test"
 };
 
 console.log('Sending Mail');

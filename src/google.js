@@ -15,7 +15,7 @@ const sendMail = async (user, message) => {
     try {
         await transporter.sendMail({
           ...message,
-          "from": userInfo.email
+          "from": user.email
         });
     } catch (e) {
         // invalid accessToken ==> refresh it
