@@ -14,6 +14,7 @@ OR
 
 ## API Usage
 ```
+POST /mail
 {
     "password": "wannes",
     "user": "wannesmatthys",
