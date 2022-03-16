@@ -17,7 +17,13 @@ const sendMail = async (user, message) => {
         await transporter.sendMail({
           ...message,
           "from": userInfo.email
-        });
+        }, (err, info) => {
+          if(err){
+            console.log(err)
+          }
+          console.log(info.envelope);
+          console.log(info.messageId);
+      });
     } catch (e) {
         // invalid accessToken ==> refresh it
         const token = (await oAuth2Client.refreshToken(oAuth2Client.credentials.refresh_token)).tokens;
