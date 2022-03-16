@@ -3,6 +3,7 @@ import { sendMail } from "./google.js"
 import { getUsers, setUsers } from "./users.js";
 import * as bcrypt from "bcrypt";
 import ipRangeCheck from "ip-range-check";
+import * as fs from 'fs';
 
 const server = new SMTPServer({
     key: fs.readFileSync("/etc/letsencrypt/live/datastore.jimber.io/privkey.pem"),
