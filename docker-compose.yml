@@ -3,7 +3,8 @@ services:
   smtp-gmail-bridge:
     volumes: 
       - /opt/smtp-gmail-bridge/config.json:/usr/src/app/config.json
+      - /opt/smtp-gmail-bridge/users.json:/usr/src/app/users.json
     ports:
-      - 587:587
+      - 1025:1025
     image: smtp-gmail-bridge
     restart: always
