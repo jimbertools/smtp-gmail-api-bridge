@@ -9,3 +9,15 @@ Bridge between SMTP and Gmail. SMTP server using the gmail API to send emails.
 ## Creating users
 1. cd src
 2. node cli add-user --login "wannes" --password "wannes" --ip "0.0.0.0/0"
+
+## API Usage
+```{
+    "password": "wannes",
+    "user": "wannesmatthys",
+    "subject": "hi",
+    "body": "<h1>hello world</h1>",
+    "to": [
+        "wannesmatthys@gmail.com",
+        "wannes233@gmail.com"
+    ]
+}```
