@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "cd src && node ."
+    "start": "cd src && node .",
+    "api": "cd src && node api.js"
   },
   "keywords": [],
   "author": "",
