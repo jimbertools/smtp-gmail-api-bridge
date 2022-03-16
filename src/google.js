@@ -13,13 +13,18 @@ const sendMail = async (user, message) => {
 
     const transporter = createTransporter(user.email, oAuth2Client._clientId, oAuth2Client._clientSecret, oAuth2Client.credentials.access_token, oAuth2Client.credentials.refresh_token);
     try {
-        console.log(`sending email from ${user.email} to ${message.to}`)
+        console.log(`Sending email from ${user.email} to ${message.envelope.to.map(to => to.address).join(", ")}`)
+        console.log(new Date());
+
         await transporter.sendMail({
           ...message,
           "from": user.email
         });
+
+        console.log("Email was successfully sent");
     } catch (e) {
         // invalid accessToken ==> refresh it
+        console.log("Invalid accesstoken, refreshing it");
         const token = (await oAuth2Client.refreshToken(oAuth2Client.credentials.refresh_token)).tokens;
         user.token = {
             ...token,

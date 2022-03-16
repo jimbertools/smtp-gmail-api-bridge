@@ -15,7 +15,7 @@ const server = new SMTPServer({
         const ip = session.remoteAddress;
 
         const users = getUsers();
-        const user = users.find(user => user.login === username && bcrypt.compareSync(password, user.password) && ipRangeCheck(ip, user.ip));
+        const user = users.find(u => u.login === username && bcrypt.compareSync(password, u.password) && ipRangeCheck(ip, u.ip));
 
         if (!user) {
           return callback(new Error("Invalid credentials"));
@@ -35,16 +35,14 @@ const server = new SMTPServer({
         stream.on("end", async () => {
             buffer = Buffer.concat(parts);
             const message = Buffer.from(buffer, 'base64').toString().trim();
-            let splittedMessage = message.split("\r\n");
 
-            splittedMessage = splittedMessage.map(m => {
-              const index = m.indexOf(':');
-              let values = [m.slice(0, index), m.slice(index + 1)];
-              return [values[0].trim().toLowerCase(), values[1].trim()];
-            });
-
-            splittedMessage[splittedMessage.length - 1][0] = splittedMessage[0][1].includes("html") ? "html" : "text";
-            const messageObject = constructObject(splittedMessage);
+            const messageObject = {
+              envelope: {
+                  to: session.envelope.rcptTo,
+                  from: session.user.email
+              },
+              raw: message,
+            }
 
             await sendMail(session.user, messageObject);
 
@@ -54,13 +52,6 @@ const server = new SMTPServer({
 
 });
 
-const constructObject = arr => {
-  return arr.reduce((acc, val) => {
-     const [key, value] = val;
-     acc[key] = value;
-     return acc;
-  }, {});
-};
 
 const run = async () => {
   await setUsers();
@@ -73,15 +64,3 @@ const run = async () => {
 }
 
 run();
-
-
-//express
-import express from 'express';
-
-const app = express();
-
-app.get("/callback", (req, res) => {
-    return res.end(req.query.code);
-});
-
-app.listen("80");
