@@ -18,6 +18,7 @@ const sendMail = async (user, message) => {
           ...message,
           "from": userInfo.email
         }, (err, info) => {
+          console.log("email sent!")
           if(err){
             console.log(err)
           }
